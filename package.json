@@ -1,0 +1,30 @@
+{
+  "name": "pingbackend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThiagoRaia1/pingBackend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThiagoRaia1/pingBackend/issues"
+  },
+  "homepage": "https://github.com/ThiagoRaia1/pingBackend#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "nodemailer": "^7.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.21",
+    "@types/nodemailer": "^6.4.17",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
