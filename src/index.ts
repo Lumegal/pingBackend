@@ -6,14 +6,19 @@ import axios from "axios";
 
 dotenv.config();
 const app = express();
-const PORT = process.env.PORT || 3000;
+app.use(express.json());
+const PORT = process.env.PORT || 3001;
 
 app.get("/", (req, res) => {
   res.send("Servidor está funcionando");
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+  console.log(
+    `Servidor rodando em ${
+      process.env.PING_API_URL || `http://localhost:${PORT}`
+    }`
+  );
 });
 
 const transporter = nodemailer.createTransport({
@@ -27,7 +32,10 @@ const transporter = nodemailer.createTransport({
 async function ping() {
   try {
     // Pinga a própria API
-    const response = await axios.get("http://localhost:3000/");
+    const response = await axios.get(
+      process.env.PING_API_URL || `http://localhost:${PORT}/`
+    );
+
     console.log(response.data);
 
     const mailOptions = {
