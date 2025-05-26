@@ -1,14 +1,19 @@
 import axios from "axios";
 
-
-export async function autenticarLoginTG() {
+export async function backendTG() {
   try {
-    const response = await axios.post(
-      `${process.env.BACKENDTG_API_URL}/usuario/login`,
-      { login: process.env.LOGIN, senha: process.env.SENHA }
-    );
-    return response.data; // já vem sem senha e _id
-  } catch (error: any) {
-    throw new Error("Erro ao autenticar usuario", error.message);
+    const response = await axios.get(`${process.env.BACKENDTG_API_URL}`);
+    return response.data;
+  } catch (erro: any) {
+    console.log(erro.message);
+  }
+}
+
+export async function backendPI() {
+  try {
+    const response = await axios.get(`${process.env.BACKENDPI_API_URL}`);
+    return response.data;
+  } catch (erro: any) {
+    console.log(erro.message);
   }
 }

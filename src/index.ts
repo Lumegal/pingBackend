@@ -1,6 +1,6 @@
 import * as nodemailer from "nodemailer";
 import * as dotenv from "dotenv";
-import { autenticarLoginTG } from "./apiCalls";
+import { backendTG, backendPI } from "./apiCalls";
 import * as express from "express";
 import axios from "axios";
 
@@ -45,19 +45,23 @@ async function ping() {
       text: "Este é um lembrete automático enviado a cada 1 minuto.",
     };
 
+    // Pinga a API do TG
+    const tg = await backendTG();
+    console.log("backendTG: ", tg);
+
+    // Pinga a API do PI
+    const pi = await backendPI();
+    console.log("backendPI: ", pi);
+
     // Envia o email
     const info = await transporter.sendMail(mailOptions);
     console.log("Email enviado:", info.response);
-
-    // Pinga a API do TG
-    const auth = await autenticarLoginTG();
-    console.log("Autenticação de Login TG: ", auth);
   } catch (error) {
     console.error("Erro:", error);
   }
 
   console.log(
-    "-------------------------------------------------------------------"
+    "--------------------------------------------------------------------------------------"
   );
 }
 
