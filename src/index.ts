@@ -41,8 +41,8 @@ async function ping() {
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_TO,
-      subject: "Lembrete a cada 1 minuto",
-      text: "Este é um lembrete automático enviado a cada 1 minuto.",
+      subject: "Lembrete a cada 5 minutos",
+      text: "Este é um lembrete automático enviado a cada 5 minutos.",
     };
 
     // Pinga a API do TG
@@ -67,5 +67,5 @@ async function ping() {
 
 console.log("Aplicação iniciada");
 
-setInterval(ping, 1 * 60 * 1000);
+setInterval(ping, 5 * 60 * 1000);
 ping(); // Envia o primeiro imediatamente
