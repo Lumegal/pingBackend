@@ -1,6 +1,10 @@
 import * as nodemailer from "nodemailer";
 import * as dotenv from "dotenv";
-import { backendTG, backendPI } from "./apiCalls";
+import {
+  backendTG,
+  backendPI,
+  backendControleEstoqueLumegal,
+} from "./apiCalls";
 import * as express from "express";
 import axios from "axios";
 
@@ -52,6 +56,10 @@ async function ping() {
     // Pinga a API do PI
     const pi = await backendPI();
     console.log("backendPI: ", pi);
+
+    // Pinga a API do Controle de Estoque Lumegal
+    const controleEstoqueLumegal = await backendControleEstoqueLumegal();
+    console.log("controleEstoqueLumegal: ", controleEstoqueLumegal);
 
     // Envia o email
     const info = await transporter.sendMail(mailOptions);
