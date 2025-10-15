@@ -1,4 +1,3 @@
-import * as nodemailer from "nodemailer";
 import * as dotenv from "dotenv";
 import {
   backendTG,
@@ -25,14 +24,6 @@ app.listen(PORT, () => {
   );
 });
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
-
 async function ping() {
   try {
     // Pinga a própria API
@@ -41,13 +32,6 @@ async function ping() {
     );
 
     console.log(response.data);
-
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_TO,
-      subject: "Lembrete a cada 5 minutos",
-      text: "Este é um lembrete automático enviado a cada 5 minutos.",
-    };
 
     // Pinga a API do TG
     const tg = await backendTG();
@@ -60,10 +44,6 @@ async function ping() {
     // Pinga a API do Controle de Estoque Lumegal
     const controleEstoqueLumegal = await backendControleEstoqueLumegal();
     console.log("controleEstoqueLumegal: ", controleEstoqueLumegal);
-
-    // Envia o email
-    const info = await transporter.sendMail(mailOptions);
-    console.log("Email enviado:", info.response);
   } catch (error) {
     console.error("Erro:", error);
   }
